@@ -1,7 +1,9 @@
 const { createId } = require("@paralleldrive/cuid2");
-const db = require("../db");
 
-const Project = db.model("Project", {
+const db = require("../db");
+const Inspiration = require("./inspirations").model;
+
+const projectSchema = new db.Schema({
   _id: { type: String, default: createId },
   customer_id: {
     type: String,
@@ -36,6 +38,22 @@ const Project = db.model("Project", {
     notes: String,
   },
 });
+
+projectSchema.pre(
+  "deleteOne",
+  { document: true, query: false },
+  async function (next) {
+    try {
+      await Inspiration.deleteMany({ project_id: this._id });
+      next();
+    } catch (err) {
+      console.error("❌ Failed to delete associated inspirations", err.message);
+      next(err);
+    }
+  }
+);
+
+const Project = db.model("Project", projectSchema);
 
 module.exports = {
   get,
@@ -83,5 +101,7 @@ async function edit(_id, change) {
 }
 
 async function remove(_id) {
-  await Project.deleteOne({ _id });
+  const project = await Project.findById({ _id });
+  if (!project) throw new Error("Project not found");
+  await project.deleteOne({ _id });
 }
