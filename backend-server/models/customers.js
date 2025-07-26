@@ -19,7 +19,10 @@ customerSchema.pre(
   { document: true, query: false },
   async function (next) {
     try {
-      await Project.deleteMany({ customer_id: this.id });
+      const projects = await Project.find({ customer_id: this._id });
+      for (const project of projects) {
+        await project.deleteOne();
+      }
       next();
     } catch (err) {
       console.error("❌ Failed to delete associated projects:", err.message);
