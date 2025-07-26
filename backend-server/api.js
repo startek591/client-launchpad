@@ -1,5 +1,6 @@
 const Customers = require("./models/customers");
 const Projects = require("./models/projects");
+const Inspirations = require("./models/inspirations");
 
 module.exports = {
   getCustomer,
@@ -12,6 +13,11 @@ module.exports = {
   listProjects,
   editProject,
   deleteProject,
+  getInspiration,
+  createInspiration,
+  listInspirations,
+  editInspiration,
+  deleteInspiration,
 };
 
 async function getCustomer(req, res, next) {
@@ -137,5 +143,71 @@ async function editProject(req, res) {
 
 async function deleteProject(req, res) {
   await Projects.remove(req.params.id);
+  res.json({ success: true });
+}
+
+async function getInspiration(req, res) {
+  try {
+    const inspiration = await Inspirations.get(req.params.id);
+
+    if (!inspiration) {
+      return res.status(404).json({ message: "Inspiration not found" });
+    }
+
+    res.json(project);
+  } catch (err) {
+    console.error("❌ Error retrieving inspiration:", err.message);
+    res.status(500).json({ error: "Server error" });
+  }
+}
+
+async function createInspiration(req, res) {
+  try {
+    const project = await Projects.get(req.body.project_id);
+    if (!project) return res.status(404).json({ error: "Project not found" });
+
+    const inspiration = await Inspirations.create(req.body);
+    res.status(201).json(inspiration);
+  } catch (err) {
+    console.error("❌ Error creating inspiration:", err.message);
+    res.status(500).json({ error: "Server error" });
+  }
+}
+
+async function listInspirations(req, res) {
+  const { offset = 0, limit = 25, inspirationId } = req.query;
+
+  const opts = {
+    offset: Number(offset),
+    limit: Number(limit),
+    inspirationId,
+  };
+
+  const inspirations = await Inspirations.list(opts);
+
+  res.json(inspirations);
+}
+
+async function editInspiration(req, res) {
+  try {
+    const inspiration = await Inspirations.get(req.params.id);
+    if (!inspiration) {
+      return res.status(404).json({ error: "Inspiration not found" });
+    }
+
+    Object.keys(req.body).forEach((key) => {
+      inspiration[key] = req.body[key];
+    });
+
+    await inspiration.save();
+    res.json(inspiration);
+  } catch (err) {
+    console.error("❌ Failed to update inspiraiton:", err.message);
+    res.status(500).json({ errror: "Server error" });
+  }
+}
+
+async function deleteInspiration(req, res) {
+  await Inspirations.remove(req.params.id);
   res.json({ success: true });
 }

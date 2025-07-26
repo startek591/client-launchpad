@@ -23,6 +23,12 @@ app.post("/project", api.createProject);
 app.put("/project/:id", api.editProject);
 app.delete("/project/:id", api.deleteProject);
 
+app.get("/inspirations", api.listInspirations);
+app.get("/inspiration/:id", api.getInspiration);
+app.post("/inspiration", api.createInspiration);
+app.put("/inspiration/:id", api.editInspiration);
+app.delete("/inspiration/:id", api.deleteInspiration);
+
 app.use(middleware.handleValidationError);
 app.use(middleware.handleError);
 app.use(middleware.notFound);
