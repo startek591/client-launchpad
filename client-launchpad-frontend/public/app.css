@@ -1,8 +1,8 @@
 .home-view {
   padding: 2rem;
-  h1 {
-    margin-bottom: 0.5rem;
-  }
+}
+.home-view h1 {
+  margin-bottom: 0.5rem;
 }
 
 .home-view {
@@ -19,7 +19,6 @@
     background-color: green;
   }
 }
-
 /* Desktop */
 @media (min-width: 1024px) {
   .home-view {
@@ -28,3 +27,5 @@
     background-color: blue;
   }
 }
+
+/*# sourceMappingURL=app.css.map */
