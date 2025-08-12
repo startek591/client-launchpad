@@ -11,6 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "@paralleldrive/cuid2": "^2.2.2",
+    "angular": "^1.8.3",
+    "angular-route": "^1.8.3",
     "body-parser": "^2.2.0",
     "express": "^5.1.0",
     "mongodb": "^6.18.0",
