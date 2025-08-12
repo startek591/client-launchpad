@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "sass:watch": "sass app/styles/main.scss public/app.css --watch",
+    "sass:build": "sass app/styles/main.scss public/app.css --style-compressed"
   },
   "keywords": [],
   "author": "",
