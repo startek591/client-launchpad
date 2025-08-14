@@ -8,8 +8,8 @@
     "test": "karma start",
     "test:watch": "karma start --auto-watch --no-single-run",
     "test:ci": "karma start --single-run",
-    "sass:watch": "sass app/styles/main.scss public/app.css --watch",
-    "sass:build": "sass app/styles/main.scss public/app.css --style-compressed"
+    "sass:build": "sass client-launchpad-frontend/styles/main.scss client-launchpad-frontend/public/app.css --style=compressed --no-source-map",
+    "sass:watch": "sass --watch client-launchpad-frontend/styles/main.scss:client-launchpad-frontend/public/app.css --style=expanded"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +17,7 @@
   "dependencies": {
     "@paralleldrive/cuid2": "^2.2.2",
     "angular": "^1.8.3",
+    "angular-material": "^1.2.5",
     "angular-route": "^1.8.3",
     "body-parser": "^2.2.0",
     "express": "^5.1.0",
