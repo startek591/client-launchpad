@@ -4,7 +4,7 @@
   class HomeController {
     constructor() {
       var vm = this;
-      vm.title = "Welcome Home";
+      vm.placeholder = " Search";
     }
   }
 

@@ -1,30 +1,54 @@
-.home-view {
-  padding: 2rem;
-  h1 {
-    margin-bottom: 0.5rem;
-  }
+.header {
+  display: flex;
+  justify-content: space-between;
+  background-color: red;
+  width: 100%;
 }
 
-.home-view {
-  padding: 10px;
-  font-size: 14px;
-  background-color: red;
+.menu-container,
+.notification-container {
+  padding: 0.75em;
+}
+
+.search-container {
+  position: relative;
+  width: 60%;
+}
+
+.search-input {
+  width: 100%;
+  padding-left: 2.5rem;
+  box-sizing: border-box;
+  height: 2rem;
+  font-size: 1.25rem;
+}
+
+.menu-container .material-icons,
+.notification-container .material-icons {
+  font-size: 2rem;
+}
+
+.menu-icon,
+.notification-icon {
+  padding-top: 0.25em;
+}
+
+.search-icon {
+  position: absolute;
+  top: 0.25em;
+  left: 0.5em;
 }
 
 /* Tablet */
 @media (min-width: 768px) {
-  .home-view {
-    padding: 20px;
-    font-size: 16px;
+  .header {
     background-color: green;
   }
 }
 
 /* Desktop */
 @media (min-width: 1024px) {
-  .home-view {
-    padding: 30px;
-    font-size: 18px;
+  .header {
     background-color: blue;
   }
 }

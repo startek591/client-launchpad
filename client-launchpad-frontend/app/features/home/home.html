@@ -1,4 +1,22 @@
-<section class="home-view" ng-cloak>
-  <h1>{{ vm.title }}</h1>
-  <p>This is the home page.</p>
-</section>
+<header class="header" ng-cloak>
+  <div class="menu-container">
+    <md-button class="md-icon-button" aria-label="Menu">
+      <md-icon class="material-icons menu-icon">menu</md-icon>
+    </md-button>
+  </div>
+  <div class="search-container">
+    <md-input-container class="md-block">
+      <md-icon class="material-icons search-icon">search</md-icon>
+      <input
+        class="search-input"
+        name="search"
+        placeholder="{{vm.placeholder}}"
+      />
+    </md-input-container>
+  </div>
+  <div class="notification-container">
+    <md-button class="md-icon-button" aria-label="Notifications">
+      <md-icon class="material-icons notification-icon">notifications</md-icon>
+    </md-button>
+  </div>
+</header>
